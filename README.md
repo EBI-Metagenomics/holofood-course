@@ -1,3 +1,5 @@
+[![Documentation Status](https://readthedocs.org/projects/holofood-course/badge/?version=latest)](https://holofood-course.readthedocs.io/en/latest/?badge=latest)
+
 # Holofood Course: workshop notes
 ## Organisation and utilisation of hologenomic datasets
 
@@ -6,10 +8,10 @@ This repository contains the source of the workshop notes of the "Organisation a
 The notes are written using [Sphinx/RST](https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html).
 It is a markup language.
 
-The notes are built automatically to a [ReadTheDocs](https://readthedocs.org/) site.
+The notes are built automatically to a [ReadTheDocs](https://readthedocs.org/) site: https://holofood-course.rtfd.io
 
 ## Using the course notes
-Head to the [live documentation page](https://readthedocs.org/) TODO
+Head to the [live documentation page](https://holofood-course.readthedocs.io/en/latest/)
 
 ## Adding to the course notes (as a course instructor)
 - Clone this repository.
