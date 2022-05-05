@@ -26,3 +26,8 @@ Head to the [live documentation page](https://holofood-course.readthedocs.io/en/
   - There is a stub example under `session/metagenomics`.
 - Add a line to the `index.rst` table-of-contents with the path to your new `.rst` file(s).
 - Open a pull request on GitHub to merge your changes in with everybody else's.
+
+### Where to store other course assets (as a course instructor)
+- You can also add a few scripts or notebooks or small datafiles etc to this repository, if they're needed for your course session.
+- For big (>20MB) datafiles, host them elsewhere e.g. on an FTP server. During the course itself, we have S3 available for this purpose. 
+- Use of Docker is fine / encouraged for packing software requirements. Quay.io is a good option for building/hosting these images.
