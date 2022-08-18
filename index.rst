@@ -25,6 +25,18 @@ The HoloFood project represents a cornerstone of hologenomic research, providing
 As such, the motivation for this course is to highlight the availability and usability of the HoloFood data in further holo-omic analyses, either as reference sets to compare against, or as source data for subsequent novel analysis.
 
 
+Preparation
+-----------
+.. hint::
+   For the practical sessions, familiarity with Unix command line use and scripting with R and/or Python will be needed.
+
+   For the lectures, the recommended pre-reading list is:
+
+   * `Disentangling host–microbiota complexity through hologenomics <https://www.nature.com/articles/s41576-021-00421-0>`_
+   * `Holo-Omics: Integrated Host-Microbiota Multi-omics for Basic and Applied Biological Research <https://www.sciencedirect.com/science/article/pii/S2589004220306040>`_
+   * `Applied Hologenomics: Feasibility and Potential in Aquaculture <https://www.sciencedirect.com/science/article/pii/S0167779918300015>`_
+
+
 Indices and tables
 ==================
 
