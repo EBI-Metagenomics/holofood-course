@@ -1,0 +1,37 @@
+##
+## GEMMA Version    = 0.98.3 (2020-11-28)
+## Build profile    = 
+## GCC version      = 7.5.0
+## GSL Version      = 1.16
+## OpenBlas         = OpenBLAS 0.3.12  - OpenBLAS 0.3.21 DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=128
+##   arch           = Haswell
+##   threads        = 128
+##   parallel type  = threaded
+##
+## Command Line Input = gemma -g genetic_data/genotype_probabilities_all_LDpruned_noheader.dose.gz -p microbiome-phenotypes-for-gemma.txt -n 2 -snps snps_for_gwas_chr5.txt -k output/MAG01_gk1_NOchr5.cXX.txt -a genetic_data/genotype_probabilities_all_LDpruned_SNPanno.txt -c covariates-for-gemma.txt -lmm 1 -outdir output/ -o MAG01_abundance_chr5 
+##
+## Date = Mon Aug 15 16:49:44 2022
+##
+## Summary Statistics:
+## number of total individuals = 361
+## number of analyzed individuals = 302
+## number of covariates = 9
+## number of phenotypes = 1
+## number of total SNPs/var = 998475
+## number of analyzed SNPs/var = 37434
+## REMLE log-likelihood in the null model = -378.58
+## MLE log-likelihood in the null model = -385.641
+## pve estimate in the null model = 1.73304e-06
+## se(pve) in the null model = 0.161529
+## vg estimate in the null model = 7.75916e-06
+## ve estimate in the null model = 0.775916
+## beta estimate in the null model =   -0.427715  0.272791  -0.531564  -0.344411  -0.581747  1.25715  1.08822  0.168103  -1.51506
+## se(beta) =   0.204083  0.0409215  0.107321  0.136  0.987011  1.04409  1.02168  0.98997  1.01453
+##
+## Computation Time:
+## total computation time = 1.87939 min 
+## computation time break down: 
+##      time on eigen-decomposition = 0.0650545 min 
+##      time on calculating UtX = 0.0518642 min 
+##      time on optimization = 1.10535 min 
+##

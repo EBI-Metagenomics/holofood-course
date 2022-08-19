@@ -1,0 +1,27 @@
+##
+## GEMMA Version    = 0.98.3 (2020-11-28)
+## Build profile    = 
+## GCC version      = 7.5.0
+## GSL Version      = 1.16
+## OpenBlas         = OpenBLAS 0.3.12  - OpenBLAS 0.3.21 DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=128
+##   arch           = Haswell
+##   threads        = 128
+##   parallel type  = threaded
+##
+## Command Line Input = gemma -g genetic_data/genotype_probabilities_all_LDpruned_noheader.dose.gz -p microbiome-phenotypes-for-gemma.txt -n 3 -snps snps_for_relatedmatrix_NOchr5.txt -gk 1 -outdir output/ -o MAG05_gk1_NOchr5 
+##
+## Date = Mon Aug 15 16:55:15 2022
+##
+## Summary Statistics:
+## number of total individuals = 361
+## number of analyzed individuals = 305
+## number of covariates = 1
+## number of phenotypes = 1
+## number of total SNPs/var = 998475
+## number of analyzed SNPs/var = 961041
+##
+## Computation Time:
+## total computation time = 5.17978 min 
+## computation time break down: 
+##      time on calculating relatedness matrix = 4.04843 min 
+##

@@ -11,6 +11,7 @@ Organisation and utilisation of hologenomic datasets course notes
    :caption: Sessions of the course:
 
    sessions/metagenomics/metagenomics-practical
+   sessions/host-variation/host-variation-practical.rst
 
 About the course
 ----------------
