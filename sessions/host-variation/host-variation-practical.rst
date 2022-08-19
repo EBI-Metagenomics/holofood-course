@@ -24,5 +24,4 @@ For this tutorial you will need to first load the conda environment by running:
 
 The software GEMMA is already installed on the virtual machine. The user manual can be found on the `GEMMA github repo <https://github.com/genetics-statistics/GEMMA>`_. 
 
-The rest of this practical is available in the `html webpage <https://github.com/EBI-Metagenomics/holofood-course/blob/main/sessions/host-variation/host-variation-practical.html>`_ downloadable from `the github repo <https://github.com/ebi-metagenomics/holofood-course/>`_.
-
+The rest of this practical is available on a `dedicated page </_static/host-variation-practical.html>`_ (which is also downloadable from `the github repo <https://github.com/ebi-metagenomics/holofood-course/>`_).
