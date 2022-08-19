@@ -12,6 +12,7 @@ Organisation and utilisation of hologenomic datasets course notes
 
    sessions/metagenomics/metagenomics-practical
    sessions/holofood-data-portal/holofood-data-portal-practical
+   sessions/host-variation
 
 About the course
 ----------------
