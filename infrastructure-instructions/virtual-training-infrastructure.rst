@@ -114,7 +114,7 @@ The virtual machines will be available for 24 hours after the course ends.
 How do I save my work from the VM?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The virual machines have full internet access, so you can use a service like Dropbox or Google Drive to save anything you want for later.
-This course documentation will be available after the course too, so you don't need to save this.
+The virtual machines have full internet access, so you can use a service like Dropbox or Google Drive to save anything you want for later.
+This course documentation will be available after the course too, so you don't need to save these instructions.
 `Magic Wormhole <https://magic-wormhole.readthedocs.io/en/latest/>`_ is also installed on the VMs, so you could use that to send bigger files to your own computer if you like (by installing it on your own computer too).
 
