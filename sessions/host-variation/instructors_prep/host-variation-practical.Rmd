@@ -35,7 +35,7 @@ using a similar pipeline as covered in the Metagenomics session on Day 1.
 
 The mapped genomic reads were used to identify single nucleotide polymorphisms (SNPs) in our samples compared to the published reference genome.
 Our genomes are relative low coverage (mean: 4X, range: 0.0003-17.3X), so instead of calling genotypes, we generated genotype likelihoods instead,
-using [ANGSD](http://www.popgen.dk/angsd/index.php/ANGSD)
+using [ANGSD](http://www.popgen.dk/angsd/index.php/ANGSD).
 
 Processing steps included:
 
@@ -53,7 +53,7 @@ The following input files are needed to start the practical:
 
 - `genetic_data/genotype_probabilities_all_LDpruned_noheader.dose.gz` : mean genotype probabilities file (see Step 0)
 - `genetic_data/GCF_905237065.1_Ssal_v3.1_genomic.gff.gz`: salmon reference genome annotation file
-- `genetic_data/genotype_probabilities_all_LDpruned_SNPanno.txt`: SNP annotation file (all SNPs included in genotype probabilities file with SNP name, position and chromosome ID
+- `genetic_data/genotype_probabilities_all_LDpruned_SNPanno.txt`: SNP annotation file (all SNPs included in genotype probabilities file with SNP name, position and chromosome ID)
 - `data/individual-phenotype-data.csv`: salmon sample metadata (e.g. sea pen, size, etc; also includes PCA coordinates from PCangsd)
 - `data/metagenome-abundance-data.csv`: salmon metagenome MAG abundance data
 
@@ -63,7 +63,7 @@ In case you get stuck during the practical, expected output files can be found i
 
 ANGSD produces genotype likelihoods; however, GWAS should be ran on imputed genotype probabilities.
 We used [BEAGLE v3.3.2](http://faculty.washington.edu/browning/beagle/b3.html)
-(note later versions of BEAGLE do not accept ANGSD `.beagle` files as output. 
+(note later versions of BEAGLE do not accept ANGSD `.beagle` files as input). 
 Again, we have already run this step for you, due to the resources needed (on this dataset, this step took 60 hours with 40 cores & 1000GB RAM).
 
 BEAGLE produces both a `gprobs` genotype probabilities file and a `dose` file. The gprobs file typically looks like this:
@@ -71,8 +71,8 @@ BEAGLE produces both a `gprobs` genotype probabilities file and a `dose` file. T
 ![Example of gprobs file](Step0_gprob_file.jpg)
 
 The first 3 columns correspond to the SNP name and the major and minor alleles (with the alleles coded as 0=A, 1=C, 2=G, 3=T).
-The other columns correspond to the genotype likelihoods for each individual, in sets of three: major/major genotype likelihood, 
-major/minor genotype likelihood and minor/minor genotype likelihood.
+The other columns correspond to the genotype probabilities for each individual, in sets of three: major/major genotype probability, 
+major/minor genotype probability and minor/minor genotype probability.
 
 However, GEMMA requires the input in "BIMBAM" file format (or PLINK Binary PED format, but we won't be covering that in this session). 
 This format requires the genotype file to be mean genotypes, also known as genotype doses. View the doses file produced by BEAGLE:
@@ -178,7 +178,7 @@ Normally, I would run microbiome-GWAS with MAG abundances for MAGs detected in a
 - abundance of MAG01
 - presence of MAG05
 
-Quantitative phenotypes like abundance should be normalised to a gaussian distribution, while binary phenotypes like presence/absence should be labelled with 0 values as controls and 1s as cases. MAG presence/absence is already in this format in the `metag.binary` matrix. However, MAG01 abundance is very skewed:
+Quantitative phenotypes like abundance should be normalised to a gaussian distribution, while binary phenotypes like presence/absence should be labelled with 0 values as "controls" (in this case, absence of MAG) and 1s as "cases" (in this case, presence of MAG). MAG presence/absence is already in this format in the `metag.binary` matrix. However, MAG01 abundance is very skewed:
 
 ```{r}
 ggplot(metag.data, aes(MAG01))+
@@ -258,7 +258,7 @@ covariates.for.gemma <- data.frame(
 )
 ```
 
-GWAS can also be affected by population genetic structure, which should also be taken into account in the model. Previously population structure was evaluated for this dataset using PCangsd, to produce a PCA. From this PCA, we can see that the salmon population is highly related, but some population structure is evident:
+GWAS can also be affected by population genetic structure (see [Price et al. 2006](https://www.nature.com/articles/ng1847)), which should also be taken into account in the model. Previously population structure was evaluated for this dataset using PCangsd, to produce a PCA. From this PCA, we can see that the salmon population is highly related, but some population structure is evident:
 
 ```{r}
 ggplot(salmon.data, aes(HostG.PC1, HostG.PC2, fill=Mass.kg, shape=Sea.pen))+
@@ -273,7 +273,7 @@ ggplot(salmon.data, aes(HostG.PC1, HostG.PC2, fill=Mass.kg, shape=Sea.pen))+
 ```
 
 
-We will therefore include the first 5 PCs from the PCA as covariates. 
+The number of PCs to include in a GWAS depends very much on the population, and there is not great agreement in the literature on how many to use. Since our population is highly related, we will use additional methods to control for population structure (relatedness matrices, see Step 3). We will therefore only include the first 5 PCs from the PCA as covariates. 
 
 ```{r}
 covariates.for.gemma <- cbind.data.frame(
@@ -364,7 +364,7 @@ Then we can do the main GEMMA association test. Today we will use a univariate l
 ```{bash eval = FALSE}
 gemma -g genetic_data/genotype_probabilities_all_LDpruned_noheader.dose.gz \
   -p microbiome-phenotypes-for-gemma.txt -n 2 \
-  -snps snps_for_gwas_chr5.txt -k expected_output/MAG01_gk1_NOchr5.cXX.txt \
+  -snps snps_for_gwas_chr5.txt -k output/MAG01_gk1_NOchr5.cXX.txt \
   -a genetic_data/genotype_probabilities_all_LDpruned_SNPanno.txt \
   -c covariates-for-gemma.txt -lmm 1 \
   -outdir output/ -o MAG01_abundance_chr5
@@ -440,7 +440,7 @@ gemma -g genetic_data/genotype_probabilities_all_LDpruned_noheader.dose.gz \
 ```{bash eval = FALSE}
 gemma -g genetic_data/genotype_probabilities_all_LDpruned_noheader.dose.gz \
   -p microbiome-phenotypes-for-gemma.txt -n 3 \
-  -snps snps_for_gwas_chr5.txt -k expected_output/MAG05_gk1_NOchr5.cXX.txt \
+  -snps snps_for_gwas_chr5.txt -k output/MAG05_gk1_NOchr5.cXX.txt \
   -a genetic_data/genotype_probabilities_all_LDpruned_SNPanno.txt \
   -c covariates-for-gemma.txt -lmm 1 \
   -outdir output/ -o MAG05_presence_chr5
@@ -516,16 +516,14 @@ gg_qqplot <- function(ps, ci = 0.95) {
 }
 
 # plot
-gg_qqplot(res$p_wald)+
-   geom_hline(yintercept = -log10(5e-8), colour = "red")+
-   geom_hline(yintercept = -log10(1e-5), colour = "blue")
+gg_qqplot(res$p_wald)
 ```
 
 We can see that observed p-values match the expected p-values pretty well.
 
 Now we know our GWAS model is good, we can view the Manhattan plot to visualise SNPs significantly associated with the phenotype. 
 
-First we define a "significance" p-value threshold to highlight interesting SNPs. In typical GWAS, 5e-8 is often used.
+First we define a "significance" p-value threshold to highlight interesting SNPs. In typical (usually human) GWAS, 5e-8 is often used, given the large number of hypotheses being tested. However, there are many other methods, including more formal adjustments for multiple hypothesis testing (for further reading, see [van der Berg et al. 2019](https://onlinelibrary.wiley.com/doi/10.1111/jbg.12419)). Today, we will stick with p < 5e-8.
 
 ```{r}
 res$sigSNP <- res$p_wald < 5e-8
@@ -536,7 +534,7 @@ manhattan(res, ylim = c(0,9), chr="chr", bp="ps", p="p_wald", snp="sigSNP")
 The log of the p-values is on the y axis, and the position of each SNP along chr 5 is plotted on the x axis. A red line is drawn at our significant threshold, p = 5e-8 (`r round(-log10(5e-8), digits = 1)` in log-transformed space).
 A blue line is drawn at p = 1e-5 (`r round(-log10(1e-5), digits = 1)` in log-transformed space). This is a less conservative threshold that is sometimes used in GWAS. As can be seen, no SNPs on chr5 are above even the blue line, suggesting that no SNPs on chr5 are associated with MAG01 abundance.
 
-If we had run GEMMA on all chromosomes, we would see a QQ-plot and Manhattan plot that look like this:
+If we had run GEMMA on all chromosomes, we would see a qqplot and Manhattan plot that look like this (in this qqplot, the "blue line" of p-value significance is included):
 
 ![Example of MAG01 abundance qqplot, all chromosomes](all_chr_MAG01_abundance_qqplot.png)
 
@@ -556,9 +554,8 @@ res <- read.delim("output/MAG05_presence_chr5.assoc.txt")
 i <- inflation(res$p_wald)
 print(i)
 
-# QQ plot
+# qqplot
 gg_qqplot(res$p_wald)+
-   geom_hline(yintercept = -log10(5e-8), colour = "red")+
    geom_hline(yintercept = -log10(1e-5), colour = "blue")
 ```
 
@@ -589,6 +586,8 @@ We can extract the positions of significant SNPs to save as a BED file, then we 
 BED files consist of the chr name, the start position and the end position of the region of interest. Today we will just extract positions 1 bp
 to either side of the significant SNPs (`win = 1`), but you can use a larger flanking window to identify e.g. SNPs in promoter regions of genes.
 
+Note that BED files are zero indexed (i.e. the first base on the chromosome is position 0), whereas all ANGSD-associated files (and therefore GEMMA output files) record the first base on a chromosome as position 1 (more info available [here](http://popgen.dk/angsd/index.php/Sites)). So we need to minus one from each SNP position. You should also be aware that BED files read a region from start_position to *before* end_position (e.g. if start_position = 10 and end_position = 15, BEDTools will return information for positions 10, 11, 12, 13 and 14). 
+
 ```{r}
 # define function
 print_bed_f <- function(snp.out, win = 1, tab.name = "output.bed"){
@@ -601,12 +600,15 @@ print_bed_f <- function(snp.out, win = 1, tab.name = "output.bed"){
   
   # calculate start and end positions based on window size
   df <- snp.out[,c("Chromosome","ps")]
-  df$start_pos <- df$ps - win
+  # convert ANGSD positions to BED zero indexed positions
+  df$ps_bed <- df$ps - 1
   if(win == 1){
-    df$stop_pos <- df$ps
+    df$start_pos <- df$ps_bed
   } else {
-    df$stop_pos <- df$ps + win
+    df$start_pos <- df$ps_bed - win
   }
+  df$stop_pos <- df$ps_bed + win
+  
   write.table(df[,c("Chromosome","start_pos","stop_pos")], 
               file = tab.name, sep = "\t", 
               row.names = FALSE, col.names = FALSE, quote = FALSE)
