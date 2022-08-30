@@ -49,9 +49,15 @@ Due to time constraints, we won't be running these steps in this practical.
 
 ## Starting files
 
+We will work in the host-variation session directory. Open the terminal and change to this directory:
+
+```{bash eval = FALSE}
+cd /course/docs/sessions/host-variation/
+```
+
 The following input files are needed to start the practical:
 
-- `genetic_data/genotype_probabilities_all_LDpruned_noheader.dose.gz` : mean genotype probabilities file (see Step 0)
+- `/course/host-variation-extra-data/genotype_probabilities_all_LDpruned_noheader.dose.gz` : mean genotype probabilities file (see Step 0)
 - `genetic_data/GCF_905237065.1_Ssal_v3.1_genomic.gff.gz`: salmon reference genome annotation file
 - `genetic_data/genotype_probabilities_all_LDpruned_SNPanno.txt`: SNP annotation file (all SNPs included in genotype probabilities file with SNP name, position and chromosome ID)
 - `data/individual-phenotype-data.csv`: salmon sample metadata (e.g. sea pen, size, etc; also includes PCA coordinates from PCangsd)
@@ -78,7 +84,7 @@ However, GEMMA requires the input in "BIMBAM" file format (or PLINK Binary PED f
 This format requires the genotype file to be mean genotypes, also known as genotype doses. View the doses file produced by BEAGLE:
 
 ```{bash eval = FALSE}
-less -S genetic_data/genotype_probabilities_all_LDpruned_noheader.dose.gz
+less -S /course/host-variation-extra-data/genotype_probabilities_all_LDpruned_noheader.dose.gz
 ```
 
 ![Example of dose file](Step0_dose_file.jpg)
@@ -111,7 +117,13 @@ And make a directory to store the output in:
 mkdir output/
 ```
 
-Then open R or RStudio and load the following libraries:
+Then open R from the terminal:
+
+```{bash eval = FALSE}
+R
+```
+
+In R, load the following libraries:
 
 ```{r eval = FALSE}
 library(ggplot2)
@@ -300,6 +312,11 @@ write.table(covariates.for.gemma[,-1],
 
 Now we have finished preparing our data for GEMMA, we can leave R and go back to the terminal to run GEMMA.
 
+To quit R, run the following (at the prompt, type 'n' to not save the workspace):
+
+```{r eval = FALSE}
+q()
+```
 
 ## Step 3: Run GEMMA
 
@@ -340,7 +357,7 @@ Now we can generate the relatedness matrix with the following parameters:
 - `-o`: output prefix
 
 ```{bash eval = FALSE}
-gemma -g genetic_data/genotype_probabilities_all_LDpruned_noheader.dose.gz \
+gemma -g /course/host-variation-extra-data/genotype_probabilities_all_LDpruned_noheader.dose.gz \
   -p microbiome-phenotypes-for-gemma.txt -n 2 \
   -snps snps_for_relatedmatrix_NOchr5.txt -gk 1 \
   -outdir output/ -o MAG01_gk1_NOchr5
@@ -362,7 +379,7 @@ Then we can do the main GEMMA association test. Today we will use a univariate l
 - `-o`: output prefix
 
 ```{bash eval = FALSE}
-gemma -g genetic_data/genotype_probabilities_all_LDpruned_noheader.dose.gz \
+gemma -g /course/host-variation-extra-data/genotype_probabilities_all_LDpruned_noheader.dose.gz \
   -p microbiome-phenotypes-for-gemma.txt -n 2 \
   -snps snps_for_gwas_chr5.txt -k output/MAG01_gk1_NOchr5.cXX.txt \
   -a genetic_data/genotype_probabilities_all_LDpruned_SNPanno.txt \
@@ -407,12 +424,12 @@ do
   grep "^$c" genetic_data/genotype_probabilities_all_LDpruned_SNPanno.txt \
     | awk -F"," '{print $1}' > snps_for_gwas_chr${c}.txt
   # run relatedness matrix
-  gemma -g genetic_data/genotype_probabilities_all_LDpruned_noheader.dose.gz \
+  gemma -g /course/host-variation-extra-data/genotype_probabilities_all_LDpruned_noheader.dose.gz \
     -p microbiome-phenotypes-for-gemma.txt -n 2 \
     -snps snps_for_relatedmatrix_NOchr${c}.txt -gk 1 \
     -outdir output/ -o MAG01_gk1_NOchr${c}
    # run gemma association test
-   gemma -g genetic_data/genotype_probabilities_all_LDpruned_noheader.dose.gz \
+   gemma -g /course/host-variation-extra-data/genotype_probabilities_all_LDpruned_noheader.dose.gz \
      -p microbiome-phenotypes-for-gemma.txt -n 2 \
      -snps snps_for_gwas_chr${c}.txt -k output/MAG01_gk1_NOchr${c}.cXX.txt \
      -a genetic_data/genotype_probabilities_all_LDpruned_SNPanno.txt \
@@ -431,14 +448,14 @@ tail -n +2 -q output/MAG01_abundance_chr*.assoc.txt >> output/MAG01_abundance_al
 Now let's repeat the two commands, but for MAG05 presence/absence. This means we should change `-n` to column `3` and change our output prefix.
 
 ```{bash eval = FALSE}
-gemma -g genetic_data/genotype_probabilities_all_LDpruned_noheader.dose.gz \
+gemma -g /course/host-variation-extra-data/genotype_probabilities_all_LDpruned_noheader.dose.gz \
   -p microbiome-phenotypes-for-gemma.txt -n 3 \
   -snps snps_for_relatedmatrix_NOchr5.txt -gk 1 \
   -outdir output/ -o MAG05_gk1_NOchr5
 ```
 
 ```{bash eval = FALSE}
-gemma -g genetic_data/genotype_probabilities_all_LDpruned_noheader.dose.gz \
+gemma -g /course/host-variation-extra-data/genotype_probabilities_all_LDpruned_noheader.dose.gz \
   -p microbiome-phenotypes-for-gemma.txt -n 3 \
   -snps snps_for_gwas_chr5.txt -k output/MAG05_gk1_NOchr5.cXX.txt \
   -a genetic_data/genotype_probabilities_all_LDpruned_SNPanno.txt \
