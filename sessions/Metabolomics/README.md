@@ -21,5 +21,5 @@ In this course we will touch upon some basic ideas and considerations on
 - [MASST: A Web-based Basic Mass Spectrometry Search Tool for Molecules to Search Public Data (analogous to BLAST)](https://www.biorxiv.org/content/10.1101/591016v1.full)
 
 ### Case study
-- [Rasmussen et al. 2022](https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-021-01221-8)
+- [Rasmussen et al. 2022 - Investigation of the gut microbiome in rainbow trout, using metabolomics etc.](https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-021-01221-8)
 
