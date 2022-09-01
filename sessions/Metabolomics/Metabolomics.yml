@@ -1,0 +1,34 @@
+name: Metabolomics
+channels:
+- bioconda
+- conda-forge
+dependencies:
+- jags
+- r-base
+- r-rjags
+- r-devtools
+- r-biocmanager
+- r-shiny
+- r-shinyjs
+- bioconductor-multiassayexperiment
+- r-ggplot2
+- r-plotly
+- r-vegan
+- r-dplyr
+- r-magrittr
+- bioconductor-biomformat
+- r-shinythemes
+- r-rcolorbrewer 
+- bioconductor-decontam
+- bioconductor-animalcules
+- bioconductor-limma
+- r-broom.mixed
+- r-lmerTest
+- r-performance
+- r-gt
+- r-gtextras
+- r-tidyverse
+- bioconductor-phyloseq
+- bioconductor-sva
+- r-factoextra
+- r-ape
