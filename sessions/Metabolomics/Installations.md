@@ -20,8 +20,8 @@ These packages are not yet to be found on condas channels and therefore we will 
 Launch conda environment and subsequently R, by typing:
 
 ```
-conda activate Metabolomics # activating the environment
-R # starting R
+conda activate Metabolomics #activating the environment
+R #starting R
 ```
 
 Now install dependencies
