@@ -7,6 +7,6 @@ In this course we will touch upon some basic ideas and considerations on
 - *in silico* classifications
 - Multivariate analysis of metabolomics
 
-## Initial reading
+## Reccomended reading
 
 
