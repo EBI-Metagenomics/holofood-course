@@ -20,6 +20,6 @@ In this course we will touch upon some basic ideas and considerations on
 - [MolNetEnhancer (a tool which combines output from GNPS, MS2LDA and NAP](https://www.mdpi.com/2218-1989/9/7/144)
 - [MASST: A Web-based Basic Mass Spectrometry Search Tool for Molecules to Search Public Data (analogous to BLAST)](https://www.biorxiv.org/content/10.1101/591016v1.full)
 
-### Case study
+### Case study for hands on
 - [Rasmussen et al. 2022 - Investigation of the gut microbiome in rainbow trout, using metabolomics etc.](https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-021-01221-8)
 
