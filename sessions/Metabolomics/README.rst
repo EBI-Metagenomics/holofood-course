@@ -42,3 +42,7 @@ We will run the analysis on a VM with all dependencies, but if you like to have 
 2. `SIRIUS:CSI-FingerID <https://bio.informatik.uni-jena.de/software/sirius/>`_
 
 3. Multivariate analysis, please find tutorial for installing everthing `here <https://github.com/EBI-Metagenomics/holofood-course/blob/main/sessions/Metabolomics/Installations.md>`_
+
+
+.. include:: Installations.md
+   :parser: myst_parser.sphinx_
