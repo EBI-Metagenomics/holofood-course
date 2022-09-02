@@ -31,3 +31,14 @@ In silico classification
 Case study for hands on
 ---------------------------
 10. `Rasmussen et al. 2022 - Investigation of the gut microbiome in rainbow trout, using metabolomics etc. <https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-021-01221-8>`_
+
+Some general course information
+---------------------------
+
+We will run the analysis on a VM with all dependencies, but if you like to have the tools on your computer please see information below
+
+1. `Mzmine3 <http://mzmine.github.io/download.html>´
+
+2. SIRIUS:CSI-FingerID <https://bio.informatik.uni-jena.de/software/sirius/>´
+
+3. Multivariate analysis, please find tutorial for installing everthing `here <https://github.com/EBI-Metagenomics/holofood-course/blob/main/sessions/Metabolomics/Installations.md>`
