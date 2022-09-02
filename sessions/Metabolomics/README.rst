@@ -13,8 +13,8 @@ Reccomended reading
 In silico classification
 ---------------------------
 1. `The concept of mass spectral molecular networking explained for the first time <https://www.pnas.org/content/109/26/E1743>`_
-2. `The Global Natural Products Social Molecular Networking (GNPS)` platform <https://www.nature.com/articles/nbt.3597>`_
-3. `The preprocessing software we are going to use <MZmine>` <https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-11-395>`_
+2. `The Global Natural Products Social Molecular Networking (GNPS) platform <https://www.nature.com/articles/nbt.3597>`_
+3. `The preprocessing software we are going to use (MZmine) <https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-11-395>`_
 4. `Feature-based molecular networking in GNPS <https://www.nature.com/articles/s41592-020-0933-6>`_
 5. `Reproducible Molecular Networking Of Untargeted Mass Spectrometry Data Using:GNPS <https://chemrxiv.org/articles/Reproducible_Molecular_Networking_Of_Untargeted_Mass_Spectrometry_Data_Using_GNPS_/9333212/1>`_
 6. `Unsupervised substructure discovery <MS2LDA>` <https://www.pnas.org/content/113/48/13738>`_
