@@ -2,11 +2,16 @@ Metabolomics
 ===================================
 
 In this course we will touch upon some basic ideas and considerations on 
-1. What metabolomics is
-2. Data acquisition
-3. What to expect from your data
-4. *in silico* classifications
-5. Multivariate analysis of metabolomics
+
+1.    What metabolomics is
+
+2.  Data acquisition
+
+3.  What to expect from your data
+
+4.  *in silico* classifications
+
+5.  Multivariate analysis of metabolomics
 
 Reccomended reading
 ---------------------------
