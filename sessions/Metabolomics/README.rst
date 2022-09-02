@@ -37,8 +37,8 @@ Some general course information
 
 We will run the analysis on a VM with all dependencies, but if you like to have the tools on your computer please see information below
 
-1. `Mzmine3 <http://mzmine.github.io/download.html>´
+1. `Mzmine3 <http://mzmine.github.io/download.html>`_
 
-2. SIRIUS:CSI-FingerID <https://bio.informatik.uni-jena.de/software/sirius/>´
+2. `SIRIUS:CSI-FingerID <https://bio.informatik.uni-jena.de/software/sirius/>`_
 
-3. Multivariate analysis, please find tutorial for installing everthing `here <https://github.com/EBI-Metagenomics/holofood-course/blob/main/sessions/Metabolomics/Installations.md>`
+3. Multivariate analysis, please find tutorial for installing everthing `here <https://github.com/EBI-Metagenomics/holofood-course/blob/main/sessions/Metabolomics/Installations.md>`_
