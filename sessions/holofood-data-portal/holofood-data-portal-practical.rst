@@ -30,7 +30,9 @@ To use the Jupyter Nobteook
 
 ::
 
+    hf-conda-setup
     conda activate jupyter
+    cd /course/docs/sessions/holofood-data-portal/notebooks
     jupyter lab
 
-Find the "HoloFood Data Portal Tutorial.ipynb" notebook in the lefthand bar. Double-click it.
+Find the "HoloFood Data Portal Tutorial Objective 7.ipynb" notebook in the lefthand bar. Double-click it.

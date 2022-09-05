@@ -99,6 +99,13 @@ Run the suggested command to set it up (you only need to do this once).
 
 
 
+Step 7: setup Conda
+-------------------
+
+Each time you open a Terminal, you'll see a similar message the Conda needs to be initialized.
+You can run the similar command (``hf-conda-setup``). Whenever a practical session tells you to run `conda activate....`, you will need to have run ``hf-conda-setup`` first.
+
+
 ----
 
 
@@ -118,3 +125,8 @@ The virtual machines have full internet access, so you can use a service like Dr
 This course documentation will be available after the course too, so you don't need to save these instructions.
 `Magic Wormhole <https://magic-wormhole.readthedocs.io/en/latest/>`_ is also installed on the VMs, so you could use that to send bigger files to your own computer if you like (by installing it on your own computer too).
 
+
+Can I SSH into the VM?
+~~~~~~~~~~~~~~~~~~~~~~
+
+It is possible, but needs some complicated setup. If you really, really need this for some reason, please ask the instructors.
