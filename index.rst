@@ -12,7 +12,8 @@ Organisation and utilisation of hologenomic datasets course notes
 
    infrastructure-instructions/virtual-training-infrastructure
    sessions/holofood-data-portal/holofood-data-portal-practical
-   sessions/metagenomics/metagenomics-practical
+   sessions/metagenomics/mag-generation
+   sessions/metagenomics/multi-kingdom-metagenomics
    sessions/host-variation/host-variation-practical
    sessions/Metabolomics/README
 
