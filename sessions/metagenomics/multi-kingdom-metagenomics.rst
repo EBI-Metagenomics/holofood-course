@@ -4,13 +4,53 @@ Metagenomic analysis of Eukaryotic and Virus kingdoms
 
 Eukaryotic annotation with EukCC
 ----------------------------------
-TBC
+
+Prerequisites
+---------------
+
+For this tutorial you will need to first navigate to the required directory:
+
+.. code-block:: bash
+
+    # navigate to directory
+    cd /course/metagenomics-data/eukaryotes
+
+|image1|\ EukCC is a tool for estimating the quality of eukaryotic genomes based on the automated dynamic selection of single copy marker gene sets, providing **completeness** and **contamination** values.
+https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02155-4
+
+We will run EukCC on 3 bins generated from HoloFood chicken caecum samples produced by CONCOCT and MetaBAT.
+
+|image3|\ To run EukCC use the following commands:
+
+.. code-block:: bash
+
+    docker run --rm -it -v /course/metagenomics-data/eukaryotes/data:/opt/data quay.io/microbiome-informatics/eukcc folder --out /opt/data/euk_classification --db /opt/data/eukcc_db/ /opt/data/eukaryotic_bins/
+
+.. hint::
+    This will take ~25mins to run. Leave it running and come back to the rest of this section at the end.
+    Alternatively continue with the pre-generated output.
+
+|image3|\ Inspect the EukCC output:
+
+.. code-block:: bash
+
+    # if using your own results
+    cat euk_classification/eukcc.csv
+
+    # if using pre-generated output
+    cat /course/metagenomics-data/eukaryotes/expected_output/euk_classification/eukcc.csv
+
+|image4|\ How many of the genomes have good completeness with respect to the EukCC database?
+|image4|\ What are these genomes classified as?
+
 
 Viral annotation with VIRify
 -------------------------------
 
 Prerequisites
 ---------------
+
+Open a new terminal.
 
 Now change into the **virify_tutorial** directory and setup the environment by running the following commands in your current terminal session:
 
@@ -141,6 +181,8 @@ You should see a list of **9 contigs** detected as viral and their taxonomic ann
 Open the gene map PDF files of the corresponding contigs to understand why some contigs were **not assigned** to a taxonomic lineage. You will see that for these cases, either there were not enough genes matching the HMMs, or there was disagreement in their assignment.
 
 |image5|\
+
+Example of gene map file
 
 .. |image1| image:: images/info.png
    :width: 0.26667in
