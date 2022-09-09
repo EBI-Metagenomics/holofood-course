@@ -57,8 +57,6 @@ Parts of the assembly graph from the above assembly are shown below.
 
 |image8| |image9|
 
-**Assembly graph figure**:
-
 The simplest graph would contain a single long contig but this is not always the case.
 
 The graph on the left is made up of several kmers.
