@@ -52,6 +52,22 @@ sequence data uses a lot of memory with metaSPAdes.
     mkdir assemblies
     metaspades.py -t 4 --only-assembler -m 10 -1 reads/ERR4918566_1.fastq.gz -2 reads/ERR4918566_2.fastq.gz -o assemblies
 
+MetaSPAdes also produces assembly graphs which can be visualised using tools such as Bandage.
+Parts of the assembly graph from the above assembly are shown below.
+
+|image8| |image9|
+
+**Assembly graph figure**:
+
+The simplest graph would contain a single long contig but this is not always the case.
+
+The graph on the left is made up of several kmers.
+It also contains a "bubble" which could be repeated sequences appearing as single nodes with multiple inputs and outputs.
+
+The right hand graph is very complex and difficult to resolve.
+
+**Assessing genome quality**
+
 Assemblies can contain contamination from several sources e.g. host, human, PhiX and so on.
 
 PhiX, is a small bacteriophage genome typically used as a
@@ -173,11 +189,11 @@ best for your dataset.
 
 For this exercise the bins have been generated using **metaWRAP** which uses a combination of the 3 tools above.
 However we have also provided the output of **MetaBAT** for the assembly above. The way in which MetaBAT bins contigs together
-is summarised in Figure 1.
+is summarised in the figure below.
 
 |image2|\
 
-Figure 1. MetaBAT workflow (Kang, et al. *PeerJ* 2015).
+MetaBAT workflow (Kang, et al. *PeerJ* 2015).
 
 |image1|\ The binning step has been run for you. To run MetaBAT we executed the following commands (but don't run it now!):
 
@@ -258,7 +274,7 @@ repeat the process, you would run the following command:
 
 |image5|\
 
-Figure 2. Example output of CheckM
+Example output of CheckM
 
 |image1|\ This file contains the taxonomic assignment and quality assessment of each
 bin with the corresponding level of
@@ -453,4 +469,9 @@ Find the ``Compare MAGs to MGnify.ipynb`` notebook in the left hand panel, and o
 .. |image6| image:: images/blast.png
    :width: 6.26389in
    :height: 3.86181in
+.. |image8| image:: images/bandage-bubble.png
+   :width: 49%
+.. |image9| image:: images/bandage-complex.png
+   :width: 49%
+
 
