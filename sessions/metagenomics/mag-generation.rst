@@ -29,8 +29,8 @@ Since some of these processes can take ~1hr we have provided the results to save
 Assembling data
 ----------------
 
-|image1|\ Learning Objectives - in the following exercises an assembled salmon HoloFood sample has been provided.
-You will assess the quality of these assemblies which were used later to generate bins.
+|image1|\ Learning Objectives - in the following exercises an assembled HoloFood salmon gut sample has been provided.
+You will assess the quality of these assemblies, which are used later to generate bins.
 
 Once quality control of sequence reads is complete,
 you may want to perform *de novo* assembly in addition to, or
@@ -42,16 +42,15 @@ metaSPAdes, as in most cases it yields the best contig size statistics
 capture high degrees of community diversity (Vollmers, et al. PLOS One
 2017). However, you should consider the pros and cons of different
 assemblers, which not only includes the accuracy of the assembly, but
-also their computational overhead. Compare these factors to what you
-have available. For example, very diverse samples with a lot of
+also their computational overhead. For example, very diverse samples with a lot of
 sequence data uses a lot of memory with metaSPAdes.
 
-|image1|\ To run metaSPAdes you would execute the following commands (but don't run it now!):
+|image1|\ The assembly step has been run for you. To run metaSPAdes we executed the following commands (but don't run it now!):
 
 .. code-block:: bash
 
-    mkdir assembly
-    metaspades.py -t 4 --only-assembler -m 10 -1 reads/ERR4918566_1.fastq.gz -2 reads/ERR4918566_2.fastq.gz -o assembly
+    mkdir assemblies
+    metaspades.py -t 4 --only-assembler -m 10 -1 reads/ERR4918566_1.fastq.gz -2 reads/ERR4918566_2.fastq.gz -o assemblies
 
 Assemblies can contain contamination from several sources e.g. host, human, PhiX and so on.
 
@@ -60,11 +59,15 @@ calibration control in sequencing runs. Most library preparations will use PhiX 
 still appear in the sequencing run. If not filtered out, PhiX can form small spurious contigs which could
 be incorrectly classified as diversity.
 
-|image3|\ Lets assess the resulting assembly contigs file. Run the following to make a PhiX reference database and run blast to identify PhiX contigs in our assembly file:
+|image3|\ Lets assess the resulting assembly contigs file. Run the following to make a PhiX reference database,
+followed by blast to identify PhiX contigs in our assembly file:
 
 .. code-block:: bash
 
+    # make reference database
     makeblastdb -in assemblies/decontamination/phiX.fna -input_type fasta -dbtype nucl -parse_seqids -out obs_results/phix_blastDB
+
+    # run blast
     blastn -query assemblies/ERR4918566.fasta -db obs_results/phix_blastDB -task megablast -word_size 28 -best_hit_overhang 0.1 -best_hit_score_edge 0.1 -dust yes -evalue 0.0001 -min_raw_gapped_score 100 -penalty -5 -soft_masking true -window_size 100 -outfmt 6 -out obs_results/ERR4918566.blast.out
 
 View the blast results
@@ -75,7 +78,11 @@ View the blast results
 
 Use the following link to understand what is in each column https://www.metagenomics.wiki/tools/blast/blastn-output-format-6
 
-|image4|\ Are there any significant hits? What are the lengths of the matching contigs? We would typically filter metagenomic contigs at a length of 500bp. Would any PhiX contamination remain after this filter?
+|image4|\ Are there any significant hits?
+
+|image4|\ What are the lengths of the matching contigs?
+
+|image4|\ We would typically filter metagenomic contigs at a length of 500bp. Would any PhiX contamination remain after this filter?
 
 Within the /opt/data/assemblies folder there is a second cleaned contigs file with contigs <500bp filtered out and contamination removed.
 
@@ -84,7 +91,11 @@ Within the /opt/data/assemblies folder there is a second cleaned contigs file wi
 .. code-block:: bash
 
     gunzip assemblies/ERR4918566_clean.fasta.gz
+
+    # statistics before quality control
     assembly_stats assemblies/ERR4918566.fasta > obs_results/assembly_stats.json
+
+    # statistics after quality control
     assembly_stats assemblies/ERR4918566_clean.fasta > obs_results/assembly_stats_clean.json
 
 |image1|\ This will output two simple tables in JSON format, but it is
@@ -96,9 +107,10 @@ fairly simple to read. To view each file you can open it via the folders or run:
     cat obs_results/assembly_stats_clean.json
 
 
-|image3|\ What is the length of longest and shortest contigs before and after quality control?
+|image4|\ Looking at the 'Contig stats' for both, what is the length of longest and shortest contigs before and after
+quality control?
 
-|image3|\ What is the N50 of the two assembly files? Given that the input
+|image4|\ What is the N50 of the two assembly files? Given that the input
 sequences were ~150bp long paired-end sequences, what does this tell you
 about the assembly?
 
@@ -112,27 +124,32 @@ percent of the metagenome. N90 is the minimum contig length to cover 90
 percent of the metagenome.
 
 
-|image3|\ Now take the first 40 lines of the sequence and perform a blast search
-at NCBI (https://blast.ncbi.nlm.nih.gov/Blast.cgi, choose
-Nucleotide:Nucleotide from the set of options). Leave all other options
-as default on the search page. To select the first 40 lines
-perform the following:
+|image3|\ Now take the first 40 lines of the first sequence and perform a blast search.
+To select the first 40 lines perform the following:
 
 .. code-block:: bash
 
+    # the number selected is 41 to allow for the header
     head -n 41 assemblies/ERR4918566_clean.fasta > obs_results/subset_contigs.fasta
+
+Load NCBI in the browser https://blast.ncbi.nlm.nih.gov/Blast.cgi and choose Nucleotide:Nucleotide. Upload the subset sequence file.
+Click 'Choose file'.
+
+Navigate to the file: 'Other locations' --> 'Computer' --> 'course' --> 'metagenomics-data' --> 'mag_generation' --> 'obs_results' --> 'subset_contigs.fasta'
+
+Leave all other options as default on the search page.
 
 |image6|\
 
-|image3|\ Which species do you think this sequence may be coming from?
-Does this make sense as a human oral bacteria? Are you surprised by this
-result at all?
+|image4|\ Which species do you think this sequence may be coming from?
 
-Generating metagenome assembled genomes
-----------------------------------------
 
-|image1|\ Learning Objectives - in the following exercises you will
-- look at some outputs of assembly and binning
+Generating metagenome assembled genomes (MAGs)
+-----------------------------------------------
+
+|image1|\ Learning Objectives - in the following exercises you will:
+
+- look at some outputs binning
 - assess the quality of the genomes using checkM
 - remove redundancy among genomes
 - visualise a placement of these genomes within a reference tree.
@@ -162,14 +179,13 @@ is summarised in Figure 1.
 
 Figure 1. MetaBAT workflow (Kang, et al. *PeerJ* 2015).
 
-|image1|\ To run MetaBAT you would execute the following commands (but don't run it now!):
+|image1|\ The binning step has been run for you. To run MetaBAT we executed the following commands (but don't run it now!):
 
-Prior to running , we need to generate coverage
-statistics by mapping reads to the contigs. To do this, we can use bwa
+Prior to running , we generated coverage
+statistics by mapping reads to the contigs. To do this, we used bwa
 (http://bio-bwa.sourceforge.net/) and then the samtools software
 (`http://www.htslib.org <http://www.htslib.org/>`__) to reformat the
-output. Again, this can take some time, so we have run it in advance. To
-repeat the process, you would run the following commands:
+output.
 
 .. code-block:: bash
 
@@ -190,8 +206,7 @@ repeat the process, you would run the following commands:
     metabat2 --inFile ERR4918566_clean.fasta --outFile ERR4918566_metabat/bin --abdFile contigs.fasta.depth.txt
 
 
-|image1|\ Once the binning process is complete, each bin will be
-grouped into a multi-fasta file with a name structure of
+|image1|\ Once the binning process is complete, each bin will be grouped into a multi-fasta file with a name structure of
 **bin.[0-9].fa**.
 
 |image3|\ Inspect the output of the binning process.
@@ -199,6 +214,8 @@ grouped into a multi-fasta file with a name structure of
 .. code-block:: bash
 
     ls bins/ERR4918566_metabat/metabat2_bins
+
+    # count sequences in each bin
     grep -c '>' bins/ERR4918566_metabat/metabat2_bins/*.fa
 
 |image4|\  How many bins did the process produce?
@@ -213,12 +230,14 @@ grouped into a multi-fasta file with a name structure of
 
 **Assessing genome quality**
 
-Not all bins will have the same level of accuracy since some
+|image1|\ Not all bins will have the same level of accuracy since some
 might represent a very small fraction of a potential species present in
 your dataset. To further assess the quality of the bins we will use
-**CheckM** (https://github.com/Ecogenomics/CheckM/wiki).
+CheckM_.
 
-|image1|\  **CheckM** has its own reference database of single-copy
+.. _CheckM: https://github.com/Ecogenomics/CheckM/wiki
+
+**CheckM** has its own reference database of single-copy
 marker genes. Based on the proportion of these markers
 detected in the bin, the number of copies of each and how different they
 are, it will determine the level of **completeness**, **contamination**
@@ -306,16 +325,15 @@ found in checkM/checkm_output/storage/tree/concatenated.tre.
 
 However we will compare our genomes to the genome taxonomy database (GTDB). GTDB is a standardised microbial taxonomy based on genome phylogeny.
 GTDB phylogeny is constructed using a mixture of isolate genomes and MAGs obtained from RefSeq and GenBank.
-The GTDB-Tk toolkit performs a rapid classification producing a multiple sequence alignment to the GTDB reference and best lineage matches.
+The GTDB-Tk toolkit performs a rapid classification producing a multiple sequence alignment to the GTDB reference genomes and best lineage matches.
 
-For the purpose of this practical, we have used the 3 salmon gut MAGs generated today and a set of HoloFood chicken ileum MAGs to generate a phylogenetic tree.
-We have run GTDB-Tk it in advance with all the mentioned genomes. To
-repeat the process, you would run the following commands (don't run this now!):
+For the purpose of this practical, we have used the 3 salmon gut MAGs generated today and a set of other HoloFood chicken ileum and salmon MAGs to generate a phylogenetic tree.
+We have run GTDB-Tk in advance with all the mentioned genomes. To repeat the process, you would run the following commands (don't run this now!):
 
 .. code-block:: bash
 
     # running the gtdb workflow
-    gtdbtk classify_wf --cpus 2 --genome_dir folder-of-genomes/ --out_dir tree/ -x fa"
+    gtdbtk classify_wf --cpus 2 --genome_dir folder-of-genomes/ --out_dir tree/ -x fa
 
     # generate a phylogenetic tree using the multiple sequence alignment
     iqtree2 -nt 16 -s tree/gtdbtk.bac120.user_msa.fasta
@@ -370,7 +388,7 @@ yourself follow these steps:
    **1)** After you have created and logged in to your account go to **My Trees**
 
    **2)** From there select **Upload tree files** and locate the tree to upload in the path:
-    /course/metagenomics-data/tree/gtdbtk.bac120.user_msa.fasta.treefile
+    Navigate to the file: 'Other locations' --> 'Computer' --> 'course' --> 'metagenomics-data' --> 'tree' --> 'gtdbtk.bac120.user_msa.fasta.treefile'
 
    **3)** Once uploaded, click the tree name to visualize the plot.
 
@@ -388,8 +406,9 @@ yourself follow these steps:
 
 Feel free to play around with the plot.
 
-|image4|\ What is the genome most closely related to our salmon MAG ERR4918566 bin.2? Can you find the taxonomic lineage
-for this genome in the GTDB output file /course/metagenomics-data/tree/gtdbtk.bac120.summary.tsv?
+|image4|\ What is the genome most closely related to our salmon MAG ERR4918566 bin.2?
+
+|image4|\ Can you find the taxonomic lineage for this genome in the GTDB output file /course/metagenomics-data/tree/gtdbtk.bac120.summary.tsv?
 
 .. hint::
     Replace the space with '_' when searching the file.
