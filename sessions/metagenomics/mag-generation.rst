@@ -396,7 +396,24 @@ for this genome in the GTDB output file /course/metagenomics-data/tree/gtdbtk.ba
 
 **Compare genomes to public MAG catalogue in MGnify**
 
-**Sandy to fill**
+|image1|\  We can compare our newly generated MAGs to existing public `MAG catalogues on MGnify <https://ebi.ac.uk/metagenomics/browse/genomes>`_.
+
+|image3|\  Open a new Terminal on your virtual desktop (you're no longer using the Docker container).
+
+|image3|\  Load the Jupyter Notebook that we've prepared for you:
+
+.. code-block:: bash
+
+    hf-conda-setup
+    conda activate jupyter
+    cd /course/docs/sessions/metagenomics/notebooks/
+    jupyter lab
+
+This should open a Jupyter Lab in the browser (Firefox). If Firefox doesn't open by itself, click one of the links printed in the Terminal, or copy-paste one into Firefox.
+
+Find the ``Compare MAGs to MGnify.ipynb`` notebook in the left hand panel, and open it. Follow the instructions in the Notebook.
+
+|image4|\  Do any of your MAGs match a known species in the human gut catalogue on MGnify?
 
 
 .. |image1| image:: images/info.png
