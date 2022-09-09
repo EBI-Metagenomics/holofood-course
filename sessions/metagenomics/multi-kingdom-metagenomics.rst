@@ -1,6 +1,6 @@
-******************************************************
+*******************************************************
 Metagenomic analysis of Eukaryotic and Virus kingdoms
-******************************************************
+*******************************************************
 
 Eukaryotic annotation with EukCC
 ----------------------------------
@@ -12,15 +12,47 @@ For this tutorial you will need to first navigate to the required directory:
 
 .. code-block:: bash
 
+    # exit docker container from the previous practical if not done already
+    exit
     # navigate to directory
     cd /course/metagenomics-data/eukaryotes
 
-|image1|\ EukCC is a tool for estimating the quality of eukaryotic genomes based on the automated dynamic selection of single copy marker gene sets, providing **completeness** and **contamination** values.
-https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02155-4
+
+|image1|\ EukCC_ is a tool for estimating the quality of eukaryotic genomes based on the automated dynamic selection of
+single copy marker gene (SCMGs) sets across different eukaryotic clades, providing **completeness** and **contamination**
+values and an **estimated lineage**. We will use a subset of clades today to speed up the process.
+
+.. _EukCC: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02155-4
+
+EukCC can be run on the bins as generated in the previous practical. However, most binners are biased towards prokaryotic genomes.
+
+MaxBin uses a set of SCMGs for bacteria and archaea hence is biased against eukaryotes. The new version 2 of MetaBAT no longer uses
+only prokaryotic isolate genomes, hence it could be used here. However a subset of the parameters are still trained on a prokaryotic dataset.
+CONCOCT is the only software out of these three that was not trained on prokaryotic data or prokaryotic marker genes.
 
 We will run EukCC on 3 bins generated from HoloFood chicken caecum samples produced by CONCOCT and MetaBAT.
 
-|image3|\ To run EukCC use the following commands:
+|image3|\ To see the 3 bins run:
+
+.. code-block:: bash
+
+    ls /course/metagenomics-data/eukaryotes/data/eukaryotic_bins/
+
+Below is a table showing the genome size in base-pairs.
+
+.. table::
+   :widths: auto
+
+   ==============================  ===========
+              Genome               Length (bp)
+   ==============================  ===========
+   ERR4336989_concoct_bin.116.fa    11203128
+   ERR4336989_metabat_bin.104.fa     2798923
+   ERR4336989_metabat_bin.263.fa     9566477
+   ==============================  ===========
+
+
+|image3|\ To run EukCC use the following command:
 
 .. code-block:: bash
 
@@ -41,6 +73,9 @@ We will run EukCC on 3 bins generated from HoloFood chicken caecum samples produ
     cat /course/metagenomics-data/eukaryotes/expected_output/euk_classification/eukcc.csv
 
 |image4|\ How many of the genomes have good completeness with respect to the EukCC database?
+
+|image4|\ Does this correlate to the genome sizes above?
+
 |image4|\ What are these genomes classified as?
 
 
@@ -120,7 +155,8 @@ Following the execution of this command, FASTA files (*.fna) will be generated f
  - **Low confidence**:
   - Contigs that VirFinder reported with **p-value < 0.05 and score ≥ 0.9.**\
   - Contigs that VirFinder reported with **p-value < 0.05 and score ≥ 0.7**, but that are also reported by VirSorter in **category 3.**\
- - **Prophages**: VirSorter prophage predictions **categories 4 and 5.**
+  - **Prophages**: VirSorter prophage predictions **categories 4 and 5.**
+
 
 2. Detection of viral taxonomic markers
 ---------------------------------------
