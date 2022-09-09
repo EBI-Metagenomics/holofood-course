@@ -44,9 +44,9 @@ capture high degrees of community diversity (Vollmers, et al. PLOS One
 assemblers, which not only includes the accuracy of the assembly, but
 also their computational overhead. Compare these factors to what you
 have available. For example, very diverse samples with a lot of
-sequence data uses a lot of memory with SPAdes.
+sequence data uses a lot of memory with metaSPAdes.
 
-|image1|\ To run metaspades you would execute the following commands (but don't run it now!):
+|image1|\ To run metaSPAdes you would execute the following commands (but don't run it now!):
 
 .. code-block:: bash
 
@@ -60,7 +60,7 @@ calibration control in sequencing runs. Most library preparations will use PhiX 
 still appear in the sequencing run. If not filtered out, PhiX can form small spurious contigs which could
 be incorrectly classified as diversity.
 
-|image3|\ Lets assess the resulting assembly contigs file. Run the following to use make a phiX reference database and run blast to identify phiX contigs in our assembly file:
+|image3|\ Lets assess the resulting assembly contigs file. Run the following to make a PhiX reference database and run blast to identify PhiX contigs in our assembly file:
 
 .. code-block:: bash
 
@@ -77,7 +77,7 @@ Use the following link to understand what is in each column https://www.metageno
 
 |image4|\ Are there any significant hits? What are the lengths of the matching contigs? We would typically filter metagenomic contigs at a length of 500bp. Would any PhiX contamination remain after this filter?
 
-Within the /opt/data/assemblies folder there is a second cleaned contigs file with contigs <500bp filtered and contamination removed.
+Within the /opt/data/assemblies folder there is a second cleaned contigs file with contigs <500bp filtered out and contamination removed.
 
 |image3|\ Lets assess the statistics of assemblies before and after quality control.
 
@@ -98,7 +98,7 @@ fairly simple to read. To view each file you can open it via the folders or run:
 
 |image3|\ What is the length of longest and shortest contigs before and after quality control?
 
-|image3|\ What is the N50 of the two assembly files? Given that are input
+|image3|\ What is the N50 of the two assembly files? Given that the input
 sequences were ~150bp long paired-end sequences, what does this tell you
 about the assembly?
 
@@ -112,7 +112,7 @@ percent of the metagenome. N90 is the minimum contig length to cover 90
 percent of the metagenome.
 
 
-|image3|\ Now take the 40 lines of the sequence and perform a blast search
+|image3|\ Now take the first 40 lines of the sequence and perform a blast search
 at NCBI (https://blast.ncbi.nlm.nih.gov/Blast.cgi, choose
 Nucleotide:Nucleotide from the set of options). Leave all other options
 as default on the search page. To select the first 40 lines
@@ -140,7 +140,7 @@ Generating metagenome assembled genomes
 **Binning**
 
 |image1|\  As with the assembly process, there are many software tools available for
-binning metagenome assemblies. Examples include, but are not limited to:
+binning metagenomic assemblies. Examples include, but are not limited to:
 
 MaxBin: https://sourceforge.net/projects/maxbin
 
@@ -150,7 +150,7 @@ MetaBAT: https://bitbucket.org/berkeleylab/metabat
 
 MetaWRAP: https://github.com/bxlab/metaWRAP
 
-There is no clear winner between these tools, so the best is to
+There is no clear winner between these tools, so the best approach is to
 experiment and compare a few different ones to determine which works
 best for your dataset.
 
@@ -301,7 +301,7 @@ This allows identification of groups of organisms that share similar DNA content
 
 |image1|\ Finally we will look at the taxonomic assignments of our species representative MAGs
 
-One example is the checkM **lineage_wf** analysis perfomed above which also produces a reference tree which can be
+This can be done in a few different ways. One example is the checkM **lineage_wf** analysis perfomed above which also produces a reference tree which can be
 found in checkM/checkm_output/storage/tree/concatenated.tre.
 
 However we will compare our genomes to the genome taxonomy database (GTDB). GTDB is a standardised microbial taxonomy based on genome phylogeny.
@@ -396,24 +396,7 @@ for this genome in the GTDB output file /course/metagenomics-data/tree/gtdbtk.ba
 
 **Compare genomes to public MAG catalogue in MGnify**
 
-|image1|\  We can compare our newly generated MAGs to existing public `MAG catalogues on MGnify <https://ebi.ac.uk/metagenomics/browse/genomes>`_.
-
-|image3|\  Open a new Terminal on your virtual desktop (you're no longer using the Docker container).
-
-|image3|\  Load the Jupyter Notebook that we've prepared for you:
-
-.. code-block:: bash
-
-    hf-conda-setup
-    conda activate jupyter
-    cd /course/docs/sessions/metagenomics/notebooks/
-    jupyter lab
-
-This should open a Jupyter Lab in the browser (Firefox). If Firefox doesn't open by itself, click one of the links printed in the Terminal, or copy-paste one into Firefox.
-
-Find the ``Compare MAGs to MGnify.ipynb`` notebook in the left hand panel, and open it. Follow the instructions in the Notebook.
-
-|image4|\  Do any of your MAGs match a known species in the human gut catalogue on MGnify?
+**Sandy to fill**
 
 
 .. |image1| image:: images/info.png
