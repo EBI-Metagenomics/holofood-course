@@ -301,7 +301,7 @@ This allows identification of groups of organisms that share similar DNA content
     awk -F "\t" -v OFS=',' '{ if ($12 - ($13 * 5) >= 50) print $1,$12,$13}' checkM/bins_qa.tab >> obs_results/quality.csv
 
     # copy bin folder to our output folder
-    cp -r data/bins/ obs_results/
+    cp -r bins/ obs_results/
     # filter lower quality bins into a separate folder
     mkdir obs_results/poor-bins
     mv obs_results/bins/ERR4918566.bin.5.fa obs_results/poor-bins/
@@ -311,7 +311,7 @@ This allows identification of groups of organisms that share similar DNA content
 
 .. code-block:: bash
 
-    dRep dereplicate obs_results/drep/ -g obs_results/bins/*.fa -pa 0.9 -sa 0.95 -nc 0.6 -cm larger --genomeInfo obs_results/quality.csv -comp 50 -con 5
+    dRep dereplicate obs_results/drep/ -g obs_results/bins/*.fa -pa 0.9 -sa 0.95 -nc 0.6 -cm larger --genomeInfo answers/quality.csv -comp 50 -con 5
 
 |image4|\ Using the following manual https://drep.readthedocs.io/en/latest/module_descriptions.html#dereplicate can you identify the ANI and coverage thresholds used to compare the genomes?
 
