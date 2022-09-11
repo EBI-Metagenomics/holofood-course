@@ -130,3 +130,12 @@ Can I SSH into the VM?
 ~~~~~~~~~~~~~~~~~~~~~~
 
 It is possible, but needs some complicated setup. If you really, really need this for some reason, please ask the instructors.
+
+
+Can I use RStudio?
+~~~~~~~~~~~~~~~~~~
+
+Sort of, it is installed. BUT... Rstudio doesn't play very nicely with Anaconda-installed R environments... so quite a lot of packages (things like ``ggplot2``) will not work in Rstudio, unfortunately.
+For all of the practical sessions, you can use command-line based ``R`` instead of Rstudio.
+
+If you prefer an environment a bit like RStudio, you could use Jupyter Lab. To install it in an existing conda environment, you can run ``conda install -c r r-irkernel; pip3 install jupyterlab; jupyter lab`` and open an R notebook.
