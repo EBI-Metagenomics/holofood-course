@@ -91,7 +91,7 @@ Now change into the **virify_tutorial** directory and setup the environment by r
 
 .. code-block:: bash
 
-    cd /course/metagenomics-data/virify_tutorial
+    cd /course/metagenomics-data/viral/virify_tutorial
     docker load --input docker/virify.tar
     docker run --rm -it -v $(pwd)/data:/opt/data virify
     mkdir obs_results
