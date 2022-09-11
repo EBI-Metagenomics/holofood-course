@@ -50,6 +50,6 @@ Now launch the software! **After the command, a browser window will open with an
 QuickFix()
 ```
 
-## If you would like more commandline based R
+## If you would like more commandline-based R
 
 Please find a markdown [**here**](https://github.com/JacobAgerbo/HF_Course_Bilbao)
