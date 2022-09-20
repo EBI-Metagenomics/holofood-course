@@ -5,8 +5,10 @@ Dear all
 **Thank you for attending!** 
 
 ## Pre-processing of data, using MZmine3
+Please see documentation [here](https://mzmine.github.io/mzmine_documentation/workflows/lcmsworkflow/lcms-workflow.html)
 
 ## *In silico* classification using SIRIUS:CSI-FingerID
+Please see documentation [here](https://boecker-lab.github.io/docs.sirius.github.io/)
 
 ## Multivariate analysis with QuickFixR
 
