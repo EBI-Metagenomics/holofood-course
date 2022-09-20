@@ -298,7 +298,7 @@ This allows identification of groups of organisms that share similar DNA content
 
     # identify bins with a minimum quality score of 50 and generate csv summary
     echo "genome,completeness,contamination" > obs_results/quality.csv
-    awk -F "\t" -v OFS=',' '{ if ($12 - ($13 * 5) >= 50) print $1,$12,$13}' checkM/bins_qa.tab >> obs_results/quality.csv
+    awk -F "\t" -v OFS=',' '{ if ($12 - ($13 * 5) >= 50) print $1".fa",$12,$13}' checkM/bins_qa.tab >> obs_results/quality.csv
 
     # copy bin folder to our output folder
     cp -r bins/ obs_results/
