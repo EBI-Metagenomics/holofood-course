@@ -311,7 +311,7 @@ This allows identification of groups of organisms that share similar DNA content
 
 .. code-block:: bash
 
-    dRep dereplicate obs_results/drep/ -g obs_results/bins/*.fa -pa 0.9 -sa 0.95 -nc 0.6 -cm larger --genomeInfo answers/quality.csv -comp 50 -con 5
+    dRep dereplicate obs_results/drep/ -g obs_results/bins/*.fa -pa 0.9 -sa 0.95 -nc 0.6 -cm larger --genomeInfo obs_results/quality.csv -comp 50 -con 5
 
 |image4|\ Using the following manual https://drep.readthedocs.io/en/latest/module_descriptions.html#dereplicate can you identify the ANI and coverage thresholds used to compare the genomes?
 
