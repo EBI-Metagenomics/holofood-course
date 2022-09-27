@@ -49,7 +49,7 @@ Day 2
 
 **Metabolomics data (practical)** — Jacob Rasmussen — :doc:`Instructions <sessions/Metabolomics/README>`
 
-**Methods to integrate multi-omics data, to understand host-microbiome interactions** — Rob Finn — *coming soon*
+**A multi-focal point of view: Integrated analyses of multi-omics data** — Rob Finn — :download:`Lecture slides <lectures/day-2-multiomics.pdf>`
 
 About the course
 ----------------
